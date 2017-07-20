@@ -32,7 +32,7 @@ We are interested in detecting white or yellow lines on images, which show a par
 
 The conversion from RGB to a different space helps in reducing noise from the original three color channels. This is a necessary pre-processing steps before we can run more powerful algorithms to isolate lines.
 
-![Grayscaled Images][./docs/chosen_grayscale_images.png]
+![Grayscaled Images](./docs/chosen_grayscale_images.png)
 
 ## Gaussian Blur
 
@@ -42,7 +42,7 @@ The OpenCV implementation of Gaussian Blur takes a integer kernel parameter whic
 
 The images below show what a typical Gaussian blur does to an image, the original image is on the left while the blurred one is to its right.
 
-![Grayscale vs Blurred Images](./docs/chosen_images_grayscale_vs_blurred.png)
+![Grayscale vs Blurred Images](./docs/chosen_images_grayscale_vs_blur.png)
 
 
 ## Canny Edge Detection
