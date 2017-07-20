@@ -8,7 +8,7 @@ The goal of this project, the first Term 1 of the [Udacity Self Driving Car Engi
 
 # Setup
 
-Udacity provided sample images of 960 * 540 pixels to train our pipeline against. Below are two of the provided images.
+Udacity provided sample images of 960 x 540 pixels to train our pipeline against. Below are two of the provided images.
 
 ![Original Images](./docs/chosen_original_images.png)
 
@@ -22,7 +22,7 @@ In this part, we will cover in detail the different steps needed to create our p
 * Define a Region Of Interest and discard all other lines identified by our previous step that are outside this region
 * Perform a Hough Transform to find lines within our region of interest and trace them in red
 * Separate left and right lanes
-* Interpolate line gradients them to create two smooth lines
+* Interpolate line gradients to create two smooth lines
 
 The input to each step is the output of the previous step (e.g. we apply Hough Transform to region segmented image).
 
