@@ -16,15 +16,49 @@ Udacity provided sample images of 960 x 540 pixels to train our pipeline against
 # The Pipeline
 
 In this part, we will cover in detail the different steps needed to create our pipeline, which will enable us to identify and classify lane lines. The pipeline itself will look as follows:
+* Convert original image to HSL
+* Isolate yellow and white from HSL image
+* Combine isolated HSL with original image
 * Convert image to grayscale for easier manipulation
 * Apply Gaussian Blur to smoothen edges
 * Apply Canny Edge Detection on smoothed gray image
-* Define a Region Of Interest and discard all other lines identified by our previous step that are outside this region
-* Perform a Hough Transform to find lines within our region of interest and trace them in red
+* Trace Region Of Interest and discard all other lines identified by our previous step that are outside this region
+* Perform a Hough Transform to find lanes within our region of interest and trace them in red
 * Separate left and right lanes
 * Interpolate line gradients to create two smooth lines
 
 The input to each step is the output of the previous step (e.g. we apply Hough Transform to region segmented image).
+
+## Convert To Different Color Spaces
+
+While our image in currently in RBG format, we should explore whether visualizing it in different color spaces such as [HSL or HSV](https://en.wikipedia.org/wiki/HSL_and_HSV) to see whether they can help us in better isolating the lanes. Note that HSV is often referred to as _HSB_ (Hue Saturation and Brightness). I was trying to get my head around the major differences between these two color codes and came across this [resource](http://codeitdown.com/hsl-hsb-hsv-color/) the other day which summed it quite well:
+
+> HSL is slightly different. Hue takes exactly the same numerical value as in HSB/HSV. However, S, which also stands for Saturation, is defined differently and requires conversion. L stands for Lightness, is not the same as Brightness/Value. Brightness is perceived as the "amount of light" which can be any color while Lightness is best understood as the amount of white. Saturation is different because in both models is scaled to fit the definition of brightness/lightness.
+
+The diagrams below enable one to visualize the differences between the two:
+
+HSV Diagram | HSL Diagram
+ :---:  | :---:  
+![HSV Diagram](docs/hsv_diagram.jpg) | ![HSL Diagram](docs/hsl_diagram.jpg)
+
+The image below shows the original image next to its HSV and HSL equivalents
+
+![Original image next to HSV and ones](docs/chosen_hsv_hsl_images.png)
+
+As can be seen while comparing images, HSL is better at contrasting lane lines than HSV. HSV is "blurring" our white lines too much, so it would not be suitable for us not to opt for it in this case. At the very least it will be easier for us to isolate yellow and white lanes using HSL. So let's use it.
+
+## Isolating Yellow And White From HSL Image
+
+We first isolate yellow and white from the original image. After doing so, we can observe how the yellow and the white of the lanes are very well isolated.
+
+![HSL images where yellow and white are isolated](docs/chosen_hsl_images.png)
+
+Let's now combine those two masks using an OR operation and then combine with the original image using an AND operation to only retain the intersecting elements.
+
+![HSL isolated and original image combined](docs/chosen_combined_hsl_images.png)
+
+The results are very satisfying so far. See how the yellow road signs are clearly identified thanks to our HSL yellow mask! Next we move to grayscaling the image.
+
 
 ## Convert To Grayscale
 
