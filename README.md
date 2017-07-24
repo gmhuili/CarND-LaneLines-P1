@@ -166,7 +166,7 @@ The video below shows how the algorithm works well at detecting lines on the roa
 # Shortcomings
 
 I have observed some problems with the current pipeline:
-* in the challenge video at around second 5 the lane is covered by some shadow and I believe my code fails to detect it. Maybe I should try different settings for hough as well as Gaussian/Canny, or look for other methods
+* in the challenge video at around second 5 the lane is covered by some shadow and I believe my code fails to detect it. I managed to fix this issue by applying the HSL color filtering as another pre-processing step.
 * straight lines do not work when there are curves on the road
 * Hough Transform is tricky to get right with its parameters. I am not sure I got the best settings
 
