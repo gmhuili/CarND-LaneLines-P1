@@ -166,14 +166,14 @@ The video below shows how the algorithm works well at detecting lines on the roa
 # Shortcomings
 
 I have observed one problem with the current pipeline:
-* in the challenge video there are issues to the curves on the road
+* in the challenge video there are minor issues to annotate the curved lane lines on the road
 
 
 # Future Improvements
 
 One further step to explore would be to calculate the weighted average of line coefficients in our MemoryLaneDetector, giving a higher weight to more recent coefficients as they belong to more recent frames; I believe frame locality would play a critical role in getting near-perfect lines on video.
 
-We should also consider expressing lines as second degree polynomials or more for examples such as the challenge video.
+We should also consider expressing lines as second degree polynomials or more to tackle the extreme curvature in the challenge video.
 
 
 All code is available on [Github](https://github.com/gmhuili/CarND-LaneLines-P1).
