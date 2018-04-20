@@ -149,7 +149,7 @@ Three videos were also provided to run our pipeline against them:
 
 ## First implementation
 
-The initial implementation worked passably on the first two videos but utterly failed on the challenge exercise. To make the line detection smoother and take advantage in the sequencing and locality of each frame (and therefore lines), I decided to interpolate lane gradients and intercepts _across frames_, and discard any line that deviated too much from the computed mean from previous frames.
+The initial implementation works very well. There is one issue in handling the file list, I commented that line (".DS_Store") out. 
 
 ## Lane Detector Memory Of Previous Frames
 
@@ -165,10 +165,8 @@ The video below shows how the algorithm works well at detecting lines on the roa
 
 # Shortcomings
 
-I have observed some problems with the current pipeline:
-* in the challenge video at around second 5 the lane is covered by some shadow and I believe my code fails to detect it. I managed to fix this issue by applying the HSL color filtering as another pre-processing step.
-* straight lines do not work when there are curves on the road
-* Hough Transform is tricky to get right with its parameters. I am not sure I got the best settings
+I have observed one problem with the current pipeline:
+* in the challenge video there are issues to the curves on the road
 
 
 # Future Improvements
@@ -177,6 +175,5 @@ One further step to explore would be to calculate the weighted average of line c
 
 We should also consider expressing lines as second degree polynomials or more for examples such as the challenge video.
 
-In the future, I also plan to use deep learning to identify lanes and compare those results against what I obtained with a pure computer vision approach.
 
-All code is available on [Github](https://github.com/kenshiro-o/CarND-LaneLines-P1).
+All code is available on [Github](https://github.com/gmhuili/CarND-LaneLines-P1).
